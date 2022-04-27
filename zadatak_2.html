@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <p>
+        <script type="text/javascript">
+            var rijec = prompt("Unesi riječ: ");
+            var formatiranaRijec = rijec.replace(/[^a-z0-9]/gi, '').toLowerCase();
+            var obrnutaRijec = formatiranaRijec.split("").reverse().join("");
+            if (formatiranaRijec === obrnutaRijec) {
+                document.write("Riječ je palindrom.")
+            }
+            else {
+                document.write("Riječ nije palindrom.")
+            }
+        </script>
+    </p>
+</body>
+
+</html>

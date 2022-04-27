@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <button onclick="igraj()">Igraj</button>
+    <p id="unos-korisnika"></p>
+    <p id="unos-racunala"></p>
+    <p id="rezultat"></p>
+    <p id="bodovi"></p>
+
+    <script type="text/javascript">
+        var pretvoriOdabir = function (odabir) {
+            if (odabir === 1) {
+                return kamen;
+            } else if (odabir === 2) {
+                return papir;
+            } else {
+                return skare;
+            }
+        }
+
+        var usporedi = function (izbor1, izbor2) {
+            if (izbor1 === izbor2) {
+                return "Izjednačeno!";
+            }
+            else if (izbor1 === kamen) {
+                if (izbor2 === skare) {
+                    bodoviKorisnika++;
+                    return "Kamen pobjeđuje";
+                } else {
+                    bodoviRacunala++;
+                    return "Papir pobjeđuje";
+                }
+            }
+            else if (izbor1 === papir) {
+                if (izbor2 === kamen) {
+                    bodoviKorisnika++;
+                    return "papir popbjeđuje";
+                } else {
+                    bodoviRacunala++;
+                    return "Škare pobjeđuju";
+                }
+            }
+            else if (izbor1 === skare) {
+                if (izbor2 === kamen) {
+                    bodoviRacunala++;
+                    return "Kamen pobjeđuje";
+                } else {
+                    bodoviKorisnika++;
+                    return "Škare pobjeđuju";
+                }
+            }
+        };
+
+        const kamen = "kamen";
+        const papir = "papir";
+        const skare = "škare";
+
+        var bodoviKorisnika = 0;
+        var bodoviRacunala = 0;
+
+        var igraj = function () {
+
+            var unosKorisnika = parseInt(prompt("Izaberite broj:\n1. kamen \n2. papir \n3. škare"));
+
+            if (isNaN(unosKorisnika) || unosKorisnika < 1 || unosKorisnika > 3) {
+                document.getElementById('unos-korisnika').innerText = "";
+                document.getElementById('unos-racunala').innerText = "";
+                document.getElementById('rezultat').innerText = "Neispravan unos";
+            } else {
+                var odabirKorisnika = pretvoriOdabir(unosKorisnika);
+                var odabirRacunala = pretvoriOdabir(Math.floor(Math.random() * 3 + 1));
+
+                document.getElementById('unos-korisnika').innerText = "Korisnik je izabrao: " + odabirKorisnika;
+                document.getElementById('unos-racunala').innerText = "Računalo je izabralo: " + odabirRacunala;
+                document.getElementById('rezultat').innerText = usporedi(odabirKorisnika, odabirRacunala);
+                document.getElementById('bodovi').innerText = "Bodovi korisnika: " + bodoviKorisnika + " Bodovi računala: " + bodoviRacunala;
+            }
+        }
+    </script>
+</body>
+
+</html>
